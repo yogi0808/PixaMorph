@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Quicksand:wght@300..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    color-scheme: dark;
+    font-family: "Quicksand", sans-serif;
+}
+
+@layer utilities {
+    .flex-center {
+        @apply flex items-center justify-center
+    }
+
+    .input {
+        @apply border-2 border-b-1 rounded-md px-3 py-2 focus:outline-none focus:border-b-2 font-medium transition-all duration-300 text-b-2
+    }
+}
+
+.font {
+    font-family: "League Spartan", sans-serif;
+}
