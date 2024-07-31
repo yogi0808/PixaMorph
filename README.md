@@ -2,7 +2,7 @@
 
 Transform your images with PixaMorph - the ultimate local image editor! Resize and convert your images with ease, while maintaining complete control over quality and format. Enjoy seamless format conversion to PNG, JPG, JPEG, WEBP, and AVIF, and adjust image quality to optimize for web or print. With PixaMorph, your images are processed locally, ensuring unparalleled privacy and security. Experience the power of flexible image editing, without compromising on quality or security.
 
-- **Visit** [ PixaMorph](http://localhost:5173)
+- **Visit** [ PixaMorph](https://pixamorph.vercel.app/)
 
 ## PixaMorph Features
 
@@ -28,7 +28,7 @@ Transform your images with PixaMorph - the ultimate local image editor! Resize a
 
 1. **Upload an image**:
 
-   - click on the upload area to select an image.
+   - click on the upload area to select images.
 
 2. **Convert the image**:
 
