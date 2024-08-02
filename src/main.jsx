@@ -12,7 +12,6 @@ import {
 } from "react-router-dom"
 import Home from "./pages/Home.jsx"
 import Resizer from "./pages/Resizer.jsx"
-import VideoResizer from "./pages/VideoResizer.jsx"
 import { Provider } from "react-redux"
 import store from "./store/store.js"
 
@@ -30,10 +29,6 @@ const router = createBrowserRouter(
       <Route
         path="/resizer"
         element={<Resizer />}
-      />
-      <Route
-        path="/videoresizer"
-        element={<VideoResizer />}
       />
     </Route>
   )

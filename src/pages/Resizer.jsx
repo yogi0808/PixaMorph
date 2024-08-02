@@ -34,7 +34,7 @@ const Resizer = () => {
           Resize Images
         </h1>
         <p className="max-w-[800px] text-center leading-loose text-lg tracking-wide text-b-2">
-          <span className="text-b-3">Introducing PixaMorph – </span>
+          <span className="text-b-3">Introducing Image Resizer – </span>
           {introductionTextForResize}
         </p>
       </div>

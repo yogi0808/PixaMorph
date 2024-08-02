@@ -11,7 +11,7 @@ const InputAreaForImages = ({ onChange }) => {
       <input
         type="file"
         name="image"
-        accept="image/png, image/jpg, image/jpeg, image/webp, image/avif"
+        accept="image/*,.png, .jpg, .jpeg, .gif, .bmp, .tiff, .webp, .heif, .avif, .ico"
         onChange={onChange}
         className="hidden"
         multiple
