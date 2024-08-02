@@ -3,7 +3,7 @@ import React from "react"
 // Files
 import UploadSvg from "../svg/UploadSvg"
 
-const InputArea = ({ onChange }) => {
+const InputAreaForImages = ({ onChange }) => {
   return (
     <label className="flex flex-1 gap-2 max-w-[800px] flex-center flex-col w-full  rounded-lg py-24 px-4 border-2 border-dashed border-b-1 cursor-pointer">
       <UploadSvg />
@@ -20,4 +20,4 @@ const InputArea = ({ onChange }) => {
   )
 }
 
-export default InputArea
+export default InputAreaForImages

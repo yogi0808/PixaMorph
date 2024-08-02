@@ -1,12 +1,12 @@
 import React from "react"
 
 // Files
-import InputArea from "../components/InputArea"
 import ConvertBtn from "../components/ConvertBtn"
 import { introductionTextForResize } from "../utils/data"
 import ResizeImageCard from "../components/ResizeImageCard"
 import { useDispatch, useSelector } from "react-redux"
 import { setImagesForResize } from "../store/Features/resize/imageResizeSlice"
+import InputAreaForImages from "../components/InputAreaForImages"
 
 const Resizer = () => {
   const { imagesForResize } = useSelector((state) => state.resizeImages)
@@ -41,7 +41,7 @@ const Resizer = () => {
       <div className="w-full flex-center flex-col gap-8">
         {/* Conditionally rendering AddImage area or Image list */}
         {imagesForResize.length <= 0 ? (
-          <InputArea onChange={onChange} />
+          <InputAreaForImages onChange={onChange} />
         ) : (
           <div className="flex flex-col gap-6">
             {imagesForResize.map((i, idx) => (

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 
 // Files
 import ImageCard from "../components/ImageCard"
-import InputArea from "../components/InputArea"
 import ConvertBtn from "../components/ConvertBtn"
 import { introductionTextForFormat } from "../utils/data"
 import { setImagesForFormat } from "../store/Features/change format/imageFormatSlice"
+import InputAreaForImages from "../components/InputAreaForImages"
 
 const Home = () => {
   const { imagesForFormat } = useSelector((state) => state.formatImages)
@@ -42,7 +42,7 @@ const Home = () => {
       <div className="w-full flex-center flex-col gap-8">
         {/* Conditionally rendering AddImage area or Image list */}
         {imagesForFormat.length <= 0 ? (
-          <InputArea onChange={onChange} />
+          <InputAreaForImages onChange={onChange} />
         ) : (
           <div className="flex flex-col gap-6">
             {imagesForFormat.map((i, idx) => (
