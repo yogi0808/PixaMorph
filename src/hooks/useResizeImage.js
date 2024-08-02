@@ -1,8 +1,8 @@
-import { useState } from 'react'
 import Pica from 'pica'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 // Files
-import { useDispatch, useSelector } from 'react-redux'
 import { addResizedImageUrl } from '../store/Features/resize/imageResizeSlice'
 
 
@@ -50,11 +50,10 @@ const useResizeImage = () => {
                     // Converting Canvas to Blob
                     canvas.toBlob(blob => {
                         const imgURL = URL.createObjectURL(blob)
-                        // Storing URL to files
+                        // Dispatching action for add download url and output image size
                         dispatch(addResizedImageUrl({ index, url: imgURL, size: blob.size }))
                     }, f.file.type)
                 }
-
                 image.src = URL.createObjectURL(f.file)
             })
 

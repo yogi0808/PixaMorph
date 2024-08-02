@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from "react-redux"
 import ImageCard from "../components/ImageCard"
 import ConvertBtn from "../components/ConvertBtn"
 import { introductionTextForFormat } from "../utils/data"
-import { setImagesForFormat } from "../store/Features/change format/imageFormatSlice"
 import InputAreaForImages from "../components/InputAreaForImages"
+import { setImagesForFormat } from "../store/Features/change format/imageFormatSlice"
 
 const Home = () => {
-  const { imagesForFormat } = useSelector((state) => state.formatImages)
+  const { imagesForFormat } = useSelector((state) => state.formatImages) // getting format Images from Redux store
 
   const dispatch = useDispatch()
 
-  // on change Setting files to Global State
+  // on change Setting files to Redux Store
   const onChange = (e) => {
     const files = Array.from(e.target.files)
 

@@ -1,4 +1,5 @@
 import React from "react"
+import { useDispatch } from "react-redux"
 
 // Files
 import Done from "./Done"
@@ -7,7 +8,6 @@ import DeleteSvg from "../svg/DeleteSvg"
 import DownloadSvg from "../svg/DownloadSvg"
 import { readableBytes } from "../utils/helper"
 import { selectOptionsForFormat } from "../utils/data"
-import { useDispatch } from "react-redux"
 import {
   removeImageFromFormat,
   setOutputFormat,
@@ -16,12 +16,12 @@ import {
 const ImageCard = ({ image, index }) => {
   const dispatch = useDispatch()
 
-  // Adding outputFormat to flies on Change and adding to Global State
+  // Despatching action for add Output Format to Image
   const changeOutputFormat = (e) => {
     dispatch(setOutputFormat({ index, format: e.target.value }))
   }
 
-  // Deleting File
+  // Dispatching action for delete file from Redux Store
   const deleteImage = () => {
     dispatch(removeImageFromFormat(image.file))
   }

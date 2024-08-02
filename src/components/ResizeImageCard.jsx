@@ -1,4 +1,5 @@
 import React from "react"
+import { useDispatch } from "react-redux"
 
 // Files
 import Done from "./Done"
@@ -7,7 +8,6 @@ import DeleteSvg from "../svg/DeleteSvg"
 import DownloadSvg from "../svg/DownloadSvg"
 import { readableBytes } from "../utils/helper"
 import { selectOptionsForResize } from "../utils/data"
-import { useDispatch } from "react-redux"
 import {
   addOutputQuality,
   removeImageFromResize,
@@ -18,12 +18,12 @@ const ResizeImageCard = ({ image, index }) => {
 
   const imageName = image.file.name.toString()
 
-  // Adding scale percent to flies on Change and adding to Global State
+  // Dispatching action for add Output Quality to Image
   const changeScalePercent = (e) => {
     dispatch(addOutputQuality({ index, quality: e.target.value }))
   }
 
-  // Deleting File
+  // Dispatching action for delete file from Redux Store
   const deleteImage = () => {
     dispatch(removeImageFromResize(image.file))
   }

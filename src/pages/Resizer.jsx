@@ -1,19 +1,19 @@
 import React from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 // Files
 import ConvertBtn from "../components/ConvertBtn"
 import { introductionTextForResize } from "../utils/data"
 import ResizeImageCard from "../components/ResizeImageCard"
-import { useDispatch, useSelector } from "react-redux"
-import { setImagesForResize } from "../store/Features/resize/imageResizeSlice"
 import InputAreaForImages from "../components/InputAreaForImages"
+import { setImagesForResize } from "../store/Features/resize/imageResizeSlice"
 
 const Resizer = () => {
-  const { imagesForResize } = useSelector((state) => state.resizeImages)
+  const { imagesForResize } = useSelector((state) => state.resizeImages) // Getting resize images from Redux Store
 
   const dispatch = useDispatch()
 
-  // Adding Files to Global Storage for Resize
+  // Adding Files to Redux Store for Resize
   const onChange = (e) => {
     const files = Array.from(e.target.files)
     dispatch(

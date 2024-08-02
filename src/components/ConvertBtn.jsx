@@ -1,12 +1,12 @@
 import React from "react"
+import { useDispatch } from "react-redux"
 
 // Files
 import Loader from "./Loader"
 import useResizeImage from "../hooks/useResizeImage"
 import useConvertImages from "../hooks/useConvertImages"
-import { useDispatch } from "react-redux"
-import { setMoreImagesForFormat } from "../store/Features/change format/imageFormatSlice"
 import { setMoreImagesForResize } from "../store/Features/resize/imageResizeSlice"
+import { setMoreImagesForFormat } from "../store/Features/change format/imageFormatSlice"
 
 const ConvertBtn = ({ resize }) => {
   const { loading, convertImages } = useConvertImages() // custom Hook for convert Images Format
@@ -14,7 +14,7 @@ const ConvertBtn = ({ resize }) => {
 
   const dispatch = useDispatch()
 
-  // on Change Setting files to Global State
+  // on Change Setting files to Redux Store
   const onChange = (e) => {
     const fs = [...e.target.files].map((f) => {
       return { file: f }
