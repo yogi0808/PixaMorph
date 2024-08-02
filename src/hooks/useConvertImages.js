@@ -1,19 +1,23 @@
 import { useState } from 'react'
 
 // Files
-import { useAppContext } from '../store/appContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { addFormattedUrl } from '../store/Features/change format/imageFormatSlice'
 
 const useConvertImages = () => {
 
     const [loading, setLoading] = useState(false)
-    const { files, setFiles } = useAppContext() // Getting Global state from App Context
+
+    const { imagesForFormat } = useSelector(state => state.formatImages)
+
+    const dispatch = useDispatch()
 
     const convertImages = async () => {
         setLoading(true)
         try {
-            if (files.length <= 0) return alert("Select file first.") // checking files is empty or not
+            if (imagesForFormat.length <= 0) return alert("Select file first.") // checking files is empty or not
 
-            await files.forEach((f, index) => {
+            await imagesForFormat.forEach((f, index) => {
 
                 if (!f.outputFormat || f.url) return // checking file have outputForma or Url
 
@@ -27,15 +31,7 @@ const useConvertImages = () => {
                         // Calling Image convert Function 
                         convertImage(image, f.outputFormat).then(blob => {
                             // Storing Blob in Global State
-                            setFiles((pre) =>
-                                pre.map((i, idx) => {
-                                    if (idx === index) {
-                                        return { ...i, url: URL.createObjectURL(blob) }
-                                    } else {
-                                        return i
-                                    }
-                                })
-                            )
+                            dispatch(addFormattedUrl({ index, url: URL.createObjectURL(blob) }))
                         })
 
                     }

@@ -6,30 +6,26 @@ import FileSvg from "../svg/FileSvg"
 import DeleteSvg from "../svg/DeleteSvg"
 import DownloadSvg from "../svg/DownloadSvg"
 import { readableBytes } from "../utils/helper"
-import { useAppContext } from "../store/appContext"
 import { selectOptionsForResize } from "../utils/data"
+import { useDispatch } from "react-redux"
+import {
+  addOutputQuality,
+  removeImageFromResize,
+} from "../store/Features/resize/imageResizeSlice"
 
 const ResizeImageCard = ({ image, index }) => {
-  const { setResizeFiles } = useAppContext() // Getting setter Function from App Context
+  const dispatch = useDispatch()
 
   const imageName = image.file.name.toString()
 
   // Adding scale percent to flies on Change and adding to Global State
   const changeScalePercent = (e) => {
-    setResizeFiles((pre) =>
-      pre.map((i, idx) => {
-        if (idx === index) {
-          return { ...i, scalePercent: e.target.value }
-        } else {
-          return i
-        }
-      })
-    )
+    dispatch(addOutputQuality({ index, quality: e.target.value }))
   }
 
   // Deleting File
   const deleteImage = () => {
-    setResizeFiles((pre) => pre.filter((p) => p !== image))
+    dispatch(removeImageFromResize(image.file))
   }
 
   return (

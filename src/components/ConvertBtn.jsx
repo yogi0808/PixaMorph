@@ -2,15 +2,17 @@ import React from "react"
 
 // Files
 import Loader from "./Loader"
-import { useAppContext } from "../store/appContext"
 import useResizeImage from "../hooks/useResizeImage"
 import useConvertImages from "../hooks/useConvertImages"
+import { useDispatch } from "react-redux"
+import { setMoreImagesForFormat } from "../store/Features/change format/imageFormatSlice"
+import { setMoreImagesForResize } from "../store/Features/resize/imageResizeSlice"
 
 const ConvertBtn = ({ resize }) => {
   const { loading, convertImages } = useConvertImages() // custom Hook for convert Images Format
   const { loading: LoadingForResize, resizeImage } = useResizeImage() // custom Hook for Resize Images
 
-  const { setFiles, setResizeFiles } = useAppContext() // getting setter functions form App Context
+  const dispatch = useDispatch()
 
   // on Change Setting files to Global State
   const onChange = (e) => {
@@ -19,9 +21,9 @@ const ConvertBtn = ({ resize }) => {
     })
 
     if (resize) {
-      setResizeFiles((pre) => pre.concat(fs))
+      dispatch(setMoreImagesForResize(fs))
     } else {
-      setFiles((pre) => pre.concat(fs))
+      dispatch(setMoreImagesForFormat(fs))
     }
 
     e.target.value = ""

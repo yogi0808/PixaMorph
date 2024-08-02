@@ -2,29 +2,33 @@ import { useState } from 'react'
 import Pica from 'pica'
 
 // Files
-import { useAppContext } from '../store/appContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { addResizedImageUrl } from '../store/Features/resize/imageResizeSlice'
 
 
 const useResizeImage = () => {
 
     const [loading, setLoading] = useState(false)
 
-    const { resizeFiles, setResizeFiles } = useAppContext() // Getting Global State form App Context
+
+    const { imagesForResize } = useSelector(state => state.resizeImages)
+
+    const dispatch = useDispatch()
 
     const resizeImage = async () => {
         setLoading(true)
         try {
             // Checking if files array is empty or not
-            if (resizeFiles <= 0) {
+            if (imagesForResize <= 0) {
                 alert("Add Images to Resize")
                 return
             }
 
-            resizeFiles.forEach((f, index) => {
+            imagesForResize.forEach((f, index) => {
 
                 if (f.url) return // checking file is already Resized or not 
 
-                const scalePercent = f.scalePercent ? f.scalePercent : 70
+                const outputQuality = f.outputQuality ? f.outputQuality : 70
 
                 const image = new Image()
 
@@ -33,8 +37,8 @@ const useResizeImage = () => {
                     const canvas = document.createElement("canvas")
 
                     // Getting new Height width from scale percent
-                    const newWidth = image.naturalWidth * (scalePercent / 100)
-                    const newHeight = image.naturalHeight * (scalePercent / 100)
+                    const newWidth = image.naturalWidth * (outputQuality / 100)
+                    const newHeight = image.naturalHeight * (outputQuality / 100)
 
                     canvas.width = newWidth
                     canvas.height = newHeight
@@ -47,14 +51,7 @@ const useResizeImage = () => {
                     canvas.toBlob(blob => {
                         const imgURL = URL.createObjectURL(blob)
                         // Storing URL to files
-                        setResizeFiles((pre) =>
-                            pre.map((i, idx) => {
-                                if (idx === index) {
-                                    return { ...i, url: imgURL, size: blob.size }
-                                } else {
-                                    return i
-                                }
-                            }))
+                        dispatch(addResizedImageUrl({ index, url: imgURL, size: blob.size }))
                     }, f.file.type)
                 }
 

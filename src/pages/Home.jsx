@@ -1,23 +1,28 @@
 import React from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 // Files
-import AddImage from "../components/AddImage"
 import ImageCard from "../components/ImageCard"
+import InputArea from "../components/InputArea"
 import ConvertBtn from "../components/ConvertBtn"
-import { useAppContext } from "../store/appContext"
 import { introductionTextForFormat } from "../utils/data"
+import { setImagesForFormat } from "../store/Features/change format/imageFormatSlice"
 
 const Home = () => {
-  const { files, setFiles } = useAppContext() // Setting and getting Files from app Context
+  const { imagesForFormat } = useSelector((state) => state.formatImages)
+
+  const dispatch = useDispatch()
 
   // on change Setting files to Global State
   const onChange = (e) => {
     const files = Array.from(e.target.files)
 
-    setFiles(
-      files.map((f) => {
-        return { file: f }
-      })
+    dispatch(
+      setImagesForFormat(
+        files.map((f) => {
+          return { file: f }
+        })
+      )
     )
 
     e.target.value = ""
@@ -36,11 +41,11 @@ const Home = () => {
       </div>
       <div className="w-full flex-center flex-col gap-8">
         {/* Conditionally rendering AddImage area or Image list */}
-        {files.length <= 0 ? (
-          <AddImage onChange={onChange} />
+        {imagesForFormat.length <= 0 ? (
+          <InputArea onChange={onChange} />
         ) : (
           <div className="flex flex-col gap-6">
-            {files.map((i, idx) => (
+            {imagesForFormat.map((i, idx) => (
               <ImageCard
                 image={i}
                 index={idx}

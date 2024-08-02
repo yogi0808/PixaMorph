@@ -6,28 +6,24 @@ import FileSvg from "../svg/FileSvg"
 import DeleteSvg from "../svg/DeleteSvg"
 import DownloadSvg from "../svg/DownloadSvg"
 import { readableBytes } from "../utils/helper"
-import { useAppContext } from "../store/appContext"
 import { selectOptionsForFormat } from "../utils/data"
+import { useDispatch } from "react-redux"
+import {
+  removeImageFromFormat,
+  setOutputFormat,
+} from "../store/Features/change format/imageFormatSlice"
 
 const ImageCard = ({ image, index }) => {
-  const { setFiles } = useAppContext() // Getting setter Function from App Context
+  const dispatch = useDispatch()
 
   // Adding outputFormat to flies on Change and adding to Global State
   const changeOutputFormat = (e) => {
-    setFiles((pre) =>
-      pre.map((i, idx) => {
-        if (idx === index) {
-          return { ...i, outputFormat: e.target.value }
-        } else {
-          return i
-        }
-      })
-    )
+    dispatch(setOutputFormat({ index, format: e.target.value }))
   }
 
   // Deleting File
   const deleteImage = () => {
-    setFiles((pre) => pre.filter((p) => p !== image))
+    dispatch(removeImageFromFormat(image.file))
   }
 
   return (

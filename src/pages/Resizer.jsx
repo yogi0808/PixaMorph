@@ -1,22 +1,27 @@
 import React from "react"
 
 // Files
-import AddImage from "../components/AddImage"
+import InputArea from "../components/InputArea"
 import ConvertBtn from "../components/ConvertBtn"
-import { useAppContext } from "../store/appContext"
 import { introductionTextForResize } from "../utils/data"
 import ResizeImageCard from "../components/ResizeImageCard"
+import { useDispatch, useSelector } from "react-redux"
+import { setImagesForResize } from "../store/Features/resize/imageResizeSlice"
 
 const Resizer = () => {
-  const { resizeFiles, setResizeFiles } = useAppContext()
+  const { imagesForResize } = useSelector((state) => state.resizeImages)
+
+  const dispatch = useDispatch()
 
   // Adding Files to Global Storage for Resize
   const onChange = (e) => {
     const files = Array.from(e.target.files)
-    setResizeFiles(
-      files.map((f) => {
-        return { file: f }
-      })
+    dispatch(
+      setImagesForResize(
+        files.map((f) => {
+          return { file: f }
+        })
+      )
     )
 
     e.target.value = ""
@@ -35,11 +40,11 @@ const Resizer = () => {
       </div>
       <div className="w-full flex-center flex-col gap-8">
         {/* Conditionally rendering AddImage area or Image list */}
-        {resizeFiles.length <= 0 ? (
-          <AddImage onChange={onChange} />
+        {imagesForResize.length <= 0 ? (
+          <InputArea onChange={onChange} />
         ) : (
           <div className="flex flex-col gap-6">
-            {resizeFiles.map((i, idx) => (
+            {imagesForResize.map((i, idx) => (
               <ResizeImageCard
                 image={i}
                 index={idx}

@@ -4,7 +4,6 @@ import ReactDOM from "react-dom/client"
 // Files
 import "./index.css"
 import App from "./App.jsx"
-import AppContextProvider from "./store/appContext.jsx"
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -13,6 +12,9 @@ import {
 } from "react-router-dom"
 import Home from "./pages/Home.jsx"
 import Resizer from "./pages/Resizer.jsx"
+import VideoResizer from "./pages/VideoResizer.jsx"
+import { Provider } from "react-redux"
+import store from "./store/store.js"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,14 +31,18 @@ const router = createBrowserRouter(
         path="/resizer"
         element={<Resizer />}
       />
+      <Route
+        path="/videoresizer"
+        element={<VideoResizer />}
+      />
     </Route>
   )
 )
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AppContextProvider>
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </AppContextProvider>
+    </Provider>
   </React.StrictMode>
 )
