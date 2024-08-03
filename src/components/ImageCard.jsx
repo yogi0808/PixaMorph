@@ -6,7 +6,7 @@ import Done from "./Done"
 import FileSvg from "../svg/FileSvg"
 import DeleteSvg from "../svg/DeleteSvg"
 import DownloadSvg from "../svg/DownloadSvg"
-import { readableBytes } from "../utils/helper"
+import { clampString, readableBytes } from "../utils/helper"
 import { selectOptionsForFormat } from "../utils/data"
 import {
   removeImageFromFormat,
@@ -30,8 +30,8 @@ const ImageCard = ({ image, index }) => {
     <div className="flex w-full px-5 py-3 flex-wrap rounded-lg items-center justify-between border border-b-1 gap-10">
       <div className="flex-center gap-4">
         <FileSvg />
-        <p className="flex-1 text-lg lg:w-96">
-          {`${image.file.name}`}{" "}
+        <p className="flex-1 text-lg lg:w-96 break-words line-clamp-3">
+          {`${clampString(image.file.name)}`}{" "}
           <span className="text-base text-b-2 text-nowrap">
             ({readableBytes(image.file.size)})
           </span>

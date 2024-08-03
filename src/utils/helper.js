@@ -4,4 +4,12 @@ export const readableBytes = (bytes) => {
         sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
     return (bytes / Math.pow(1024, i)).toFixed(2) + ' ' + sizes[i];
-} 
+}
+
+export const clampString = (str, maxLength = 23) => {
+    if (str.length <= maxLength) {
+        return str;
+    }
+
+    return `${str.slice(0, 10)}...${str.slice(-10)}`
+}

@@ -6,7 +6,7 @@ import Done from "./Done"
 import FileSvg from "../svg/FileSvg"
 import DeleteSvg from "../svg/DeleteSvg"
 import DownloadSvg from "../svg/DownloadSvg"
-import { readableBytes } from "../utils/helper"
+import { clampString, readableBytes } from "../utils/helper"
 import { selectOptionsForResize } from "../utils/data"
 import {
   addOutputQuality,
@@ -33,7 +33,7 @@ const ResizeImageCard = ({ image, index }) => {
       <div className="flex-center gap-4">
         <FileSvg />
         <p className="flex-1 text-lg lg:w-96">
-          {`${imageName}`}{" "}
+          {`${clampString(imageName)}`}{" "}
           <span className="text-base text-b-2 text-nowrap">
             ({readableBytes(image.file.size)})
           </span>
