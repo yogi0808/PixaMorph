@@ -40,18 +40,18 @@ Transform your images with PixaMorph - the ultimate local image editor! Resize a
 
 ### Upload Images
 
-![Upload Images](/public/upload%20images.png)
+![upload images](https://github.com/user-attachments/assets/f92771d2-de0d-45de-b9fb-042e37fd69e5)
 
 ### Select the Format
 
-![select the format](/public/select%20format.png)
+![select format](https://github.com/user-attachments/assets/c61de51b-54e5-472a-8a6e-71e2905f1e06)
 
 ### Select the Quality
 
-![select the Quality](/public/select%20quality.png)
+![select quality](https://github.com/user-attachments/assets/eefdf744-16ba-4f6b-827e-3a580cb1862c)
 
 ### Download the Images
 
-![download images](/public/download%201.png)
+![download 1](https://github.com/user-attachments/assets/4d5e5ce9-433c-4fe7-af42-7aabca657ede)
 
-![download images 2](/public/download%202.png)
+![download 2](https://github.com/user-attachments/assets/056b128b-308c-4cc5-ad36-51d00b946489)
