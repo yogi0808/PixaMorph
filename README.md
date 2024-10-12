@@ -21,7 +21,7 @@ Transform your images with PixaMorph - the ultimate local image editor! Resize a
 ## Technologies Used
 
 - **React**: For building the user interface.
-- **Context API**: For state management.
+- **Redux**: For state management.
 - **Tailwind CSS**: For styling and layout.
 
 ## How to Use
